@@ -10,12 +10,12 @@ This plugin adds [Qonto](https://qonto.eu/) support to Play! Framework 1 applica
 
 ```
 require:
-    - qonto -> qonto 1.0.0
+    - qonto -> qonto 1.1.0
 
 repositories:
-    - sismics:
-        type:       http
-        artifact:   "http://release.sismics.com/repo/play/[module]-[revision].zip"
+    - sismicsNexusRaw:
+        type: http
+        artifact: "https://nexus.sismics.com/repository/sismics/[module]-[revision].zip"
         contains:
             - qonto -> *
 
