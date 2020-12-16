@@ -3,7 +3,9 @@ package helpers.api.qonto;
 import com.sismics.sapparot.function.CheckedConsumer;
 import com.sismics.sapparot.function.CheckedFunction;
 import com.sismics.sapparot.okhttp.OkHttpHelper;
+import helpers.api.qonto.mock.MockOrganizationService;
 import helpers.api.qonto.mock.MockTransactionService;
+import helpers.api.qonto.service.OrganizationService;
 import helpers.api.qonto.service.TransactionService;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -18,6 +20,8 @@ public class QontoClient {
 
     private static QontoClient qontoClient;
 
+    private OrganizationService organizationService;
+
     private TransactionService transactionService;
 
     public static QontoClient get() {
@@ -30,8 +34,10 @@ public class QontoClient {
     public QontoClient() {
         client = createClient();
         if (isMock()) {
+            organizationService = MockOrganizationService.create();
             transactionService = MockTransactionService.create();
         } else {
+            organizationService = new OrganizationService(this);
             transactionService = new TransactionService(this);
         }
     }
@@ -67,6 +73,10 @@ public class QontoClient {
 
     public OkHttpClient getClient() {
         return client;
+    }
+
+    public OrganizationService getOrganizationService() {
+        return organizationService;
     }
 
     public TransactionService getTransactionService() {
