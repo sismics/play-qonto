@@ -10,7 +10,7 @@ This plugin adds [Qonto](https://qonto.eu/) support to Play! Framework 1 applica
 
 ```
 require:
-    - qonto -> qonto 1.1.0
+    - qonto -> qonto 1.2.0
 
 repositories:
     - sismicsNexusRaw:
