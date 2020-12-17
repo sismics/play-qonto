@@ -32,4 +32,10 @@ jobs:
           NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
           VERSION: ${{ steps.get_version.outputs.VERSION }}
         run: curl -u "${NEXUS_USERNAME}:${NEXUS_PASSWORD}" -X PUT --upload-file package.zip https://nexus.sismics.com/repository/sismics/qonto-${VERSION}.zip;
-
+      - name: Create Github Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ steps.get_version.outputs.VERSION }}
