@@ -21,16 +21,15 @@ jobs:
       - name: Build
         env:
           PLAY_VERSION: 1.5.3
-          VERSION: ${{ steps.get_version.outputs.VERSION }}
         run: |
           wget -nv http://downloads.typesafe.com/play/${PLAY_VERSION}/play-${PLAY_VERSION}.zip
           unzip -q play-${PLAY_VERSION}.zip
           play-${PLAY_VERSION}/play deps --sync
-          zip -r ${VERSION}.zip app conf lib src *.md LICENSE play.plugins
+          zip -r package.zip app conf lib src *.md LICENSE play.plugins
       - name: Deploy
         env:
           NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
           NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
           VERSION: ${{ steps.get_version.outputs.VERSION }}
-        run: curl -u "${NEXUS_USERNAME}:${NEXUS_PASSWORD}" -X PUT --upload-file ${VERSION}.zip https://nexus.sismics.com/repository/sismics/${VERSION}.zip;
+        run: curl -u "${NEXUS_USERNAME}:${NEXUS_PASSWORD}" -X PUT --upload-file package.zip https://nexus.sismics.com/repository/sismics/qonto-${VERSION}.zip;
 
