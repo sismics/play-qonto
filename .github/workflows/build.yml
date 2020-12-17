@@ -14,10 +14,11 @@ jobs:
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\/v/}
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Build
+      - name: Setup Python
         uses: actions/setup-python@v2
         with:
           python-version: '2.x'
+      - name: Build
         env:
           PLAY_VERSION: 1.5.3
         run: |
