@@ -24,7 +24,7 @@ jobs:
         env:
           PLAY_VERSION: 1.5.3
         run: |
-          wget -nv http://downloads.typesafe.com/play/${PLAY_VERSION}/play-${PLAY_VERSION}.zip
+          wget -nv https://github.com/playframework/play1/releases/download/${PLAY_VERSION}/play-${PLAY_VERSION}.zip
           unzip -q play-${PLAY_VERSION}.zip
           play-${PLAY_VERSION}/play deps --sync
           zip -r package.zip app conf lib src *.md LICENSE play.plugins
