@@ -14,7 +14,7 @@ jobs:
       - name: Get the version
         id: get_version
         run: |
-          value=`grep -oP 'docker \K[\d\.]*' conf/dependencies.yml`
+          value=`grep -oP 'qonto \K[\d\.]*' conf/dependencies.yml`
           echo "VERSION=$value" >> $GITHUB_ENV
       - name: Setup Python
         uses: LizardByte/setup-python-action@master
