@@ -7,4 +7,6 @@ import java.util.List;
  */
 public class TransactionResponse {
     public List<Transaction> transactions;
+
+    public Meta meta;
 }
